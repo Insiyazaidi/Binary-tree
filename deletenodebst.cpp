@@ -65,7 +65,7 @@ else{   // 2 child .. find inorder successor -- right subtree .. leftmost node  
 Node*IS = getis(root->right);
 
 root->data = IS->data;
- root->right = deletenode(root->right ,IS->data );
+ root->right = deletenode(root->right ,IS->data );  // kyu ki IS hmesha right m exist krta h isliye , aur hm  root ke right se hi delete krege 
 
 
      
