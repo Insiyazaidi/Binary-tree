@@ -30,10 +30,25 @@ for(int val : arr){
 }
 return root ; 
 }
+ bool search (Node* root , int key){
+if(root==NULL){
+    return false ;
+}
+if(root->data ==key){
+    return true;
+}
+if(root->data <key){
+    search(root->right , key);
+}
+else{
+    search(root->left , key);
+}
+}
 int main(){
     vector<int>arr ={3,2,1,5,6,4};
    Node*root =  buildbst(arr);
    cout<< root->data<<" ";
    cout<< root->left->data << " ";
-   cout<< root->right->data<< " ";
+   cout<< root->right->data<< " " << endl;
+   cout << search(root , 8);
 }
