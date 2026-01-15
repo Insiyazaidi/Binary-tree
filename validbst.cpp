@@ -11,4 +11,4 @@ bool validate (TreeNode*root , long min , long max ){
 }
     bool isValidBST(TreeNode* root) {
      return    validate(root , LONG_MIN , LONG_MAX);
-    }
+    }     
