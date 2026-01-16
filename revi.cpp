@@ -98,6 +98,39 @@ else if(root->right==NULL){
 }
 return root ; 
 }
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+TreeNode* buildbst( int st , int end , vector<int>nums){
+    if(st>end){
+        return NULL;
+    }
+    int mid = st+(end-st)/2;
+    TreeNode* makingroot = new TreeNode(nums[mid]);
+    makingroot->left = buildbst(st , mid-1 , nums);
+     makingroot->right = buildbst(mid+1 , end , nums);
+     return makingroot ; 
+}
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+    return buildbst(0 , nums.size()-1 , nums);    
+    }
+};
+
+
+
+
+
 int main(){
     vector<int>arr ={3,2,1,5,6,4};
    Node*root =  buildbst(arr);
