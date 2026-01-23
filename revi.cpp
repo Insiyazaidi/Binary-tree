@@ -128,3 +128,31 @@ int prevorder = 0;
         return -1;
     }
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+       if(root==NULL){
+        return NULL;
+       } 
+       if(root->val>p->val && root->val>q->val){  // this guarantee ki leftsubtree m hi answer milega toh yha se jo milega vhi return krdo .. rightsubtree ki call llgange ki zaroorat nhi  hh 
+      return  lowestCommonAncestor(root->left , p ,q);  // if node p , q both lie in leftsubtree 
+       }
+       else if(root->val<p->val && root->val<q->val){
+      return   lowestCommonAncestor(root->right , p ,q); // if node p,q both lie in rightsubtree  
+       }
+       else{   // if one node lie in right and other lie in left ... this is the condition of lca 
+        return root;
+       }
+    }
