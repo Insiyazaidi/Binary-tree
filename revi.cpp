@@ -156,3 +156,27 @@ public:
         return root;
        }
     }
+
+    class Solution {
+public:
+TreeNode* helper(vector<int>& preorder , int& i , int bound){
+    if(i>=preorder.size() || bound<preorder[i]){
+        return NULL;
+    }
+    
+    TreeNode* root = new TreeNode(preorder[i]);
+    i++;
+    root->left = helper(preorder , i , root->val);   // leftsub tree ke liye upper bound root ki value hogi 
+     root->right = helper(preorder , i , bound);  // rightsubtree ke liye upper boung vhi hoga jo root ke liye upper bound tha ... 
+
+     // for eg-- 3 root h aur uska upper bound jo tha vo 6 tha .. ab  hmne 3 root bna liye uska leftsubtree ka upperboud 3 hoga yaani left m koi bhi value aaksti h bs vo 3 se choti ho .. aur right subtree ka yeh rheega ki 3 se bdi value koi bhi aaksti h bs vo uske upr vle node se choti ho ie 6 se choti hu ... vrna bst property violate hojaigi .. 
+
+    return root ; 
+
+}
+
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int i=0;
+         return helper(preorder , i , INT_MAX);
+    }
+};
